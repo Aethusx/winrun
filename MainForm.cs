@@ -52,6 +52,7 @@ namespace winrun
             this.Location = location;
             InputBox.Text = null;
             this.Show();
+            this.Activate();
         }
 
         private void InputBox_KeyDown(object sender, KeyEventArgs e)
@@ -98,10 +99,10 @@ namespace winrun
 
         private void Execute(string command)
         {
-            string dupa = database.FirstOrDefault(t => t.Key.StartsWith(command)).Value;
-            if(dupa != null)
+            string search = database.FirstOrDefault(t => t.Key.StartsWith(command)).Value;
+            if(search != null)
             {
-                Process.Start(dupa);
+                Process.Start(search);
                 this.Hide();
             }
         }
@@ -140,9 +141,9 @@ namespace winrun
 
         private void InputBox_TextChanged(object sender, EventArgs e)
         {
-            string dupa = database.FirstOrDefault(t => t.Key.StartsWith(InputBox.Text)).Key;
-            if (dupa != null)
-                CorrectLabel.Text = dupa;
+            string search = database.FirstOrDefault(t => t.Key.StartsWith(InputBox.Text)).Key;
+            if (search != null)
+                CorrectLabel.Text = search;
             else
                 CorrectLabel.Text = null;
         }
